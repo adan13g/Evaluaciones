@@ -1,0 +1,133 @@
+﻿@model Mysql_Asp.Models.PreguntasView
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Preguntas</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_pregunta)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pregunta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pregunta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pregunta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_profesor, "id_profesor", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_profesor", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_profesor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.siglema, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("siglema", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.siglema, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_unidad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_unidad", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_unidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_resultado, "id_resultado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_resultado", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_resultado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_status, "id_status", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_status", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Regresar a la lista", "Index", new { }, new { @class = "btn btn-success" }) |
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#siglema").change(function () {
+                $("#id_unidad").empty();
+                //$("#id_unidad").append('<option value="0">[Seleciona una Unidad...]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetUnidades","Generic")',
+                    dataType: 'json',
+                    data: { siglema: $("#siglema").val() },
+                    success: function (tbl_unidad) {
+                        $.each(tbl_unidad, function (i, unidad) {
+                            $("#id_unidad").append('<option value="'
+                             + unidad.id_unidad + '">'
+                             + unidad.nombre + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve unidades.' + ex);
+                    }
+                });
+                return false;
+            })
+
+        });
+</script>
+<script type="text/javascript">
+
+     $(document).ready(function () {
+         $("#id_unidad").change(function () {
+             $("#id_resultado").empty();
+             //$("#id_resultado").append('<option value="0">[Seleciona un Resultado de aprendizaje...]</option>');
+             $.ajax({
+                 type: 'POST',
+                 url: '@Url.Action("GetSubUnidades", "Generic")',
+                 dataType: 'json',
+                 data: { id_unidad: $("#id_unidad").val() },
+                 success: function (tbl_subunidad) {
+                     $.each(tbl_subunidad, function (i, subunidad) {
+                         $("#id_resultado").append('<option value="'
+                          + subunidad.id_resultado + '">'
+                          + subunidad.nombre + '</option>');
+                     });
+                 },
+                 error: function (ex) {
+                     alert('Failed to retrieve subunidades.' + ex);
+                 }
+             });
+             return false;
+         })
+     });
+</script>
+    }

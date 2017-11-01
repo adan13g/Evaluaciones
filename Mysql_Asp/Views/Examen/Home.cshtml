@@ -1,0 +1,160 @@
+﻿@model Mysql_Asp.Models.AsignacionPreguntas
+
+@{
+    ViewBag.Title = "home";
+}
+
+@using (Html.BeginForm("Home", "Examen", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <h3>Por favor selecciona los datos correspondientes a la materia para poder comenzar tu examen </h3>
+<h2>Grupo: @ViewBag.id_grupos</h2>
+
+@*@Html.HiddenFor(model => model.id_carrera)
+@Html.HiddenFor(model => model.siglema)
+@Html.HiddenFor(model => model.id_profesor)*@
+
+
+    <div class="form-horizontal">
+
+    
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_carrera, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_carrera",ViewBag.id_carrera as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_carrera, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.siglema, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("siglema", ViewBag.siglema as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.siglema, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_unidad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_unidad", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_unidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_resultado, "Resultado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_resultado", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_resultado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_profesor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_profesor", ViewBag.id_profesor as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_profesor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Comenzar Evaluacion" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+}
+@if (ViewBag.showSuccessAlert == true)
+{
+
+    <script>
+        alert('Aun no se ha liberado examen para este resultado de aprendizaje');
+    </script>
+}
+@*@Html.ActionLink("Comenzar Evaluacion", "Index", new { @class = "btn btn-primary" })*@
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+    $(document).ready(function () {
+            $("#siglema").change(function () {
+                $("#id_unidad").empty();
+                $("#id_unidad").append('<option value="0">[Seleciona una Unidad...]</option>');
+                $('#id_resultado').find('option').remove().end()/*.append('<option value="Seleccionar una unidad"></option>').val(0)*/;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetUnidades","Generic")',
+                    dataType: 'json',
+                    data: { siglema: $("#siglema").val() },
+                    success: function (tbl_unidad) {
+
+                        $.each(tbl_unidad, function (i, unidad) {
+                            $("#id_unidad").append('<option value="'
+                             + unidad.id_unidad + '">'
+                             + unidad.nombre + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve unidades.' + ex);
+                    }
+                });
+                return false;
+            })
+
+        });
+</script>
+<script type="text/javascript">
+
+     $(document).ready(function () {
+         $("#id_unidad").change(function () {
+             $("#id_resultado").empty();
+             $("#id_resultado").append('<option value="0">[Seleciona un Resultado de aprendizaje...]</option>');
+             $.ajax({
+                 type: 'POST',
+                 url: '@Url.Action("GetSubUnidades", "Generic")',
+                 dataType: 'json',
+                 data: { id_unidad: $("#id_unidad").val() },
+                 success: function (tbl_subunidad) {
+                   
+
+                      //$("#id_resultado").append('<option value=""></option>');
+                     $.each(tbl_subunidad, function (i, subunidad) {
+                         $("#id_resultado").append('<option value="'
+                             + subunidad.id_resultado + '">'
+                             + subunidad.nombre + '</option>');
+                     });
+                     
+                 },
+                 error: function (ex) {
+                     alert('Failed to retrieve subunidades.' + ex);
+                 }
+             });
+             return false;
+         })
+   
+     });
+</script>
+
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $("#id_carrera").change(function () {
+            var selecionado = ($(this).val())
+            alert(selecionado);
+
+        var url = "@Url.Action("Index", "Examen", new { id = "id_carrera" })";
+
+        url = url.replace("id_carrera", selecionado);
+
+        $("#carrera").load(url);
+    });
+ });
+    </script>*@
+}
+
+

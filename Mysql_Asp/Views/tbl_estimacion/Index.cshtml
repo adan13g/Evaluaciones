@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Mysql_Asp.Models.tbl_estimacion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_grupos.grupos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_profesores.Profesor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_subunidad.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tiempo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_grupos.grupos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_profesores.Profesor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_subunidad.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tiempo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_estimacion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_estimacion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_estimacion })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,84 @@
+﻿@model Mysql_Asp.Models.tbl_alumnos
+
+<div>
+    <h4>tbl_alumnos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_grupos.grupos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_grupos.grupos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_status.estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_status.estatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_usuarios.usuarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_usuarios.usuarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ape_pat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ape_pat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ape_mat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ape_mat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.matricula }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+@if (Request.IsAuthenticated)
+{
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    @if (Session["Logo"] != null)
+                    {
+                        <img src="@Url.Content(Session["Logo"].ToString())" alt="Image" style="width:25px;height:25px; " class="img-circle" />
+                    }                    
+                    hola: 
+    @*@Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                    @User.Identity.GetUserName()
+           <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    @*<li>@Html.ActionLink("Mi Perfil", "Index", "Perfil",new { id=Model.matricula.FirstOrDefault()})</li>*@
+
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>  
+                    </li>
+                    <li>
+                        @Html.ActionLink("Cambiar Contraseña" + "", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                   </li>
+                </ul>
+            </li>
+            
+            @*<li>
+                
+                    @if (Session["Logo"] != null)
+                    {
+                        <img src="@Url.Content(Session["Logo"].ToString())" alt="Image" style="width:40px;height:40px;max-width: 100%; height: auto;" class="img-circle" />
+                    }
+             </li> 
+            <li>
+                @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>*@  
+                @*<li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>*@
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @*<li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+        <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

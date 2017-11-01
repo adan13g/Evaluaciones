@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Mysql_Asp.Models.tbl_semestres>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_status.estatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.semestre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_status.estatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.semestre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_semestre }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_semestre }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_semestre })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Mysql_Asp.Models.tbl_asignacion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de asignaciones</h2>
+
+<p>
+    @Html.ActionLink("Asignar Nueva Materia", "Create",new { }, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_carreras.carrera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_grupos.grupos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_materias.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_profesores.Profesor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_carreras.carrera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_grupos.grupos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_materias.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_profesores.Profesor)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_asignacion }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_asignacion }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_asignacion }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

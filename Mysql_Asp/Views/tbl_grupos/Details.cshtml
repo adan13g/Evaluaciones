@@ -1,0 +1,34 @@
+﻿@model Mysql_Asp.Models.tbl_grupos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_grupos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_status.estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_status.estatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.grupos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.grupos)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_grupos }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

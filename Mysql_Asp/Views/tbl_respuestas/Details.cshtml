@@ -1,0 +1,42 @@
+﻿@model Mysql_Asp.Models.tbl_respuestas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_respuestas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_preguntas.pregunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_preguntas.pregunta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.respuesta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.respuesta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.puntos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.puntos)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_respuesta }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

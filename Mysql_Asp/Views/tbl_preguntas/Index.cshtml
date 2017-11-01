@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Mysql_Asp.Models.tbl_preguntas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de preguntas</h2>
+
+
+<p>
+    @Html.ActionLink("Crear Nueva", "Create",new { }, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.tbl_profesores.Profesor)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.pregunta)
+        </th>
+     
+        <th>
+Materia
+        </th>
+        <th>
+Unidad
+               </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.tbl_subunidad.nombre )*@ Resultado de Aprendizaje
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.tbl_status.estatus)
+        </th>*@
+        <th>
+        </th>
+        <th>
+            Acciones
+</th>
+        <th>
+</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.tbl_profesores.Profesor)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.pregunta)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_subunidad.tbl_unidad.tbl_materias.nombre)
+        </td>
+        <td>
+    @Html.DisplayFor(modelItem => item.tbl_subunidad.tbl_unidad.nombre)
+</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_subunidad.nombre)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.tbl_status.estatus)
+        </td>*@
+        <td>
+            @Html.ActionLink(" Editar", "Edit", new { id = item.id_pregunta }, new { @class = "btn btn-warning glyphicon glyphicon-pencil" })
+        </td>
+        <td>
+            @Html.ActionLink(" Eliminar", "Delete", new { id = item.id_pregunta }, new { @class = "btn btn-danger glyphicon glyphicon-remove" })
+        </td>
+        <td>
+            @Html.ActionLink(" Detalles", "Details", new { id = item.id_pregunta }, new { @class = "btn btn-info glyphicon glyphicon-list-alt" })
+        </td>
+
+        
+    </tr>
+}
+
+</table>

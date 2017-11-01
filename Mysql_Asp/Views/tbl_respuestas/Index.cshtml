@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Mysql_Asp.Models.tbl_respuestas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@foreach (var item in Model) {
+    
+            @Html.DisplayFor(modelItem => item.tbl_preguntas.pregunta)
+      <br />
+    @*<label class="btn btn-default">
+        @*<input type="radio" name="options" id="option" autocomplete="off"> @item.respuesta
+        <br />
+
+        
+    </label>*@
+
+        @Html.RadioButtonFor(modelItem => item.id_respuesta, item.respuesta)@item.respuesta
+
+    
+
+    <br />
+
+        @*@Html.RadioButtonFor(modelItem => item.respuesta)*@
+      
+
+}
+
+

@@ -1,0 +1,82 @@
+﻿@model Mysql_Asp.Models.tbl_calificacion
+
+<div>
+    <h4>tbl_calificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_alumnos.Alumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_alumnos.Alumno)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_asignacion.tbl_carreras.carrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_asignacion.tbl_carreras.carrera)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_asignacion.tbl_materias.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_asignacion.tbl_materias.nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_subunidad.tbl_unidad.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_subunidad.tbl_unidad.nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_subunidad.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_subunidad.nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_asignacion.tbl_materias.tbl_semestres.semestre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_asignacion.tbl_materias.tbl_semestres.semestre)
+        </dd>
+     
+
+        <dt>
+            @Html.DisplayNameFor(model => model.calificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+
+    <div class="progress progress-striped active">
+        <div class="progress-bar" role="progressbar"
+             aria-valuenow="10%" aria-valuemin="0" aria-valuemax="100"
+             style="width: @Html.DisplayFor(model=>model.calificacion)%">
+            <span class="sr-only"></span>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_calificacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

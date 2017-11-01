@@ -1,0 +1,58 @@
+﻿@model Mysql_Asp.Models.tbl_calificacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_calificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_alumnos.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_alumnos.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_asignacion.siglema)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_asignacion.siglema)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_subunidad.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_subunidad.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.calificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_calificacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

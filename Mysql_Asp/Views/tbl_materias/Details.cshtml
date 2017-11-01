@@ -1,0 +1,89 @@
+﻿@model Mysql_Asp.Models.tbl_materias
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h2>Materias</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_semestres.semestre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_semestres.semestre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_status.estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_status.estatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.siglema }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Regresar a la lista", "Index",new { }, new { @class = "btn btn-success" }) |
+    @Html.ActionLink("Crear Unidad", "CreateUnidad", new { id = Model.siglema }, new { @class = "btn btn-primary" }) |
+
+</p>
+
+<h4>Unidades</h4>
+@if (Model.tbl_unidad.Count==0)
+{
+    <h5>No hay unidades registradas todavia</h5>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tbl_unidad.FirstOrDefault().nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbl_unidad.FirstOrDefault().tbl_status.estatus)
+            </th>
+            <th>
+                # Subunidades
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.tbl_unidad.OrderBy(u => u.nombre))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_status.estatus)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_subunidad.Count)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "EditUnidad", new { id = item.id_unidad }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Detalles", "DetailsUnidad", new { id = item.id_unidad }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Eliminar", "DeleteUnidad", new { id = item.id_unidad }, new { @class = "btn btn-danger", onClick = "return confirm('Desea eliminar esta unidad');"} )
+                </td>
+            </tr>
+        }
+
+    </table>
+}

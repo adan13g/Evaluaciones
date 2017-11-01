@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@if (!Request.IsAuthenticated)
+{
+<div class="jumbotron">
+    <h1>Sistema para la evaluacion estudiantil</h1>
+    
+
+    <p class="lead">Es una plataforma para que los profesores puedan dar de alta preguntas y asignar examenes acordes a su materia</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Alumnos</h4>
+            <p>
+                <img src="~/Content/estudiante.png" alt="Image" style="width:400px;height:040px;max-width: 100%; height: auto;" class="img-circle" />
+
+            </p>
+            @*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>*@
+        </div>
+        <div class="col-md-6">
+            <h4>Profesores</h4>
+            <img src="~/Content/REGISTRATE-PROFESOR.png" alt="Image" style="width:400px;height:040px;max-width: 100%; height: auto;" class="img-circle" />
+        </div>
+        @*<div class="col-md-4">
+                <h2>Web Hosting</h2>
+                <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            </div>*@
+    </div>
+</div>
+
+}
+else
+{
+    if (User.IsInRole("User"))
+    {
+
+        <center>
+            <div class="jumbotron">
+                <div class="panel-group">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                          @if (Session["Logo"] != null)
+{
+                            <img src="@Url.Content(@ViewBag.Logo)" alt="Image" style="width:250px;height:250px; " class="img-circle" />
+}
+                            <h2>Bienvenido: @ViewBag.Profe</h2>
+                            @*@Html.ActionLink("Editar Perfil", "EditProfe", new { id = @ViewBag.id }, new { @class = "btn btn-morado" })*@
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalProfe">
+                                Editar Perfil
+                            </button>
+
+                          </div>
+                    </div>
+                </div>
+
+            </div>
+        </center>
+        <div class="modal fade" id="myModalProfe" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="resultado"></div>
+
+                        @{ Html.RenderAction("EditProfe", "Home", new { ViewBag.id });}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+                            }
+                            if (User.IsInRole("Alumno"))
+                            {
+
+        <center>
+           
+                <div class="jumbotron">
+                    <div class="panel-group">
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+@if (Session["Logo"] != null)
+{
+ 
+    <img id="img" src="@Url.Content(@ViewBag.Logo)" alt="Image" style="width:250px;height:250px; " class="img-circle" />
+
+}
+                                <h2>Bienvenido: @ViewBag.alum</h2>
+                                <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModal">
+                                   Editar Perfil
+                                </button>
+
+      @*<a data-toggle="modal" data-target="#myModal" href="@Url.Action("Home","ModalAlumno")" class="btn btn-primary edit-radicado" data-id="@ViewBag.id">
+    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+</a>*@
+                                @*@Html.ActionLink("Editar Perfil", "Edit", new { id = @ViewBag.id },new { @class="btn btn-morado"}) <br />*@
+                                @*@Html.ActionLink("Comenzar Evaluacion", "Home", "Examen", new { @class = "btn btn-primary" })*@
+<a href="@Url.Action("Home", "Examen")">Comenzar Evaluacion</a>
+                                @*@Html.Action("Home", "Examen",new { @class = "btn btn-primary" })*@
+
+                            </div>
+                        </div> 
+                    </div>
+     
+                </div>
+            
+        </center>
+        <div class="modal fade" id="myModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="resultado"></div>
+
+                        @{ Html.RenderAction("Edit", "Home",new { ViewBag.id });}
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+
+
+    
+
+
+                                }
+                            }
+
+
+@*<div class="modal-content">
+    <div id="myModalContent">
+        @{ Html.RenderAction("Edit", "Home"); }
+    </div>
+</div>*@
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').focus()
+
+
+        })
+        $('#myModalProfe').on('shown.bs.modal', function () {
+            $('#myInput').focus()
+
+
+        })
+        @*function llamarVistaParcial() {
+            var laURLDeLaVista = '@Url.Action("Edit", "Home",new { ViewBag.id })';
+            $.ajax({
+                cache: false,
+                async: true,
+                type: "GET",
+                url: laURLDeLaVista,
+                data: {},
+                success: function (response) {s
+                    $('#resultado').html(response);
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+
+            $('#myModal').modal('show');  //Después de asignar la data mostramos la ventana modal
+        }*@
+</script>
+}

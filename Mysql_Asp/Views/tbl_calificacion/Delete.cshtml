@@ -1,0 +1,64 @@
+﻿@model Mysql_Asp.Models.tbl_calificacion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_calificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_alumnos.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_alumnos.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_asignacion.siglema)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_asignacion.siglema)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_subunidad.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_subunidad.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.calificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,55 @@
+﻿@model Mysql_Asp.Models.tbl_unidad
+
+@{
+    ViewBag.Title = "Detalles de la unidad";
+}
+<br /><br />
+<h3>Materia: @Model.tbl_materias.nombre</h3>
+<h4>Unidad: @Model.nombre</h4>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "CreateSubUnidad", new { id = Model.id_unidad }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("regresar a unidades", "Details", new { id = Model.siglema }, new { @class = "btn btn-success" })
+
+
+</p>
+<br />
+<h4>Resultados de aprendizaje</h4>
+@if (Model.tbl_subunidad.Count == 0)
+{
+    <h5>No hay Resultados de aprendizaje registrados todavia</h5>
+}
+else
+{
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tbl_subunidad.FirstOrDefault().tbl_status.estatus)
+            </th>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.tbl_subunidad.FirstOrDefault().nombre)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.tbl_subunidad.OrderBy(s=>s.nombre))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbl_status.estatus)
+                </td>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td></td>
+                <td>
+                    @Html.ActionLink("Editar", "EditSubUnidad", new { id = item.id_resultado }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "DeleteSubUnidad", new { id = item.id_resultado }, new { @class = "btn btn-danger", onClick = "return confirm('Desea eliminar esta Subunidad');" })
+                </td>
+              </tr>
+        }
+
+    </table>
+}

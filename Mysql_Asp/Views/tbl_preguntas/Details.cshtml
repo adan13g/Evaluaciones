@@ -1,0 +1,89 @@
+﻿@model Mysql_Asp.Models.tbl_preguntas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Preguntas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_profesores.Profesor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_profesores.Profesor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_status.estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_status.estatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_subunidad.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_subunidad.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pregunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pregunta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_pregunta }, new { @class = "btn btn-warning" }) 
+    @Html.ActionLink("Regresar a la lista", "Index",new { }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Crear nueva", "CreateRespuesta", new { id = Model.id_pregunta }, new { @class = "btn btn-primary" }) 
+
+</p>
+<h4>Unidades</h4>
+@if (Model.tbl_respuestas.Count == 0)
+{
+    <h5>No hay respuestas registradas todavia</h5>
+}
+else
+{<table class="table">
+    <tr>
+   
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_respuestas.FirstOrDefault().respuesta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_respuestas.FirstOrDefault().puntos)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.tbl_respuestas.OrderBy(r=>r.respuesta))
+    {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.respuesta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.puntos)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditRespuesta", new { id = item.id_respuesta }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Eliminar", "DeleteRespuesta", new { id = item.id_respuesta }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+}

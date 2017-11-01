@@ -1,0 +1,110 @@
+﻿@model Mysql_Asp.Models.tbl_preguntas
+
+@{
+    ViewBag.Title = "Index";
+    List<Mysql_Asp.Models.tbl_preguntas> question = ViewBag.Lista;
+
+}
+
+@using (Html.BeginForm("Calificacion", "Examen", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3>Examen de: @*@Model.FirstOrDefault().tbl_subunidad.tbl_unidad.tbl_materias.nombre*@</h3>
+        @*<h4>Unidad: @Model.FirstOrDefault().tbl_subunidad.tbl_unidad.nombre</h4>
+            <h5>Resultado de aprendizaje: @Model.FirstOrDefault().tbl_subunidad.nombre</h5>*@
+        </div>
+
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <td>            
+                 
+                        @foreach (var item in question)
+                        {
+                            <div>
+                                <h4>@item.pregunta</h4>
+
+                            </div>
+
+                            foreach (var a in item.tbl_respuestas.OrderBy(en => Guid.NewGuid()).Take(4))
+                            {
+                                <div id="divRadios">
+                               
+                                    <input type="radio" name="answerResult[@item.pregunta]" id="boton1" value="@a.id_respuesta"> @a.respuesta<br />
+                        
+
+                                    @*<input type="radio" name="h" id="boton1" value="@a.id_respuesta">@a.respuesta<br />*@
+                                   @*@Html.HiddenFor(model =>a.id_respuesta)*@
+                                    @*@Html.RadioButton(item.pregunta,a.id_respuesta,new { Id="pregun" })@a.respuesta*@
+                                        @*@Html.Label("label",a.respuesta)*@
+                              @*@Html.RadioButtonFor(model=> model.RespuestaSeleccionada,a.id_respuesta)@a.respuesta*@
+                                    @*@Html.Label(a.id_respuesta.ToString())*@
+                                    @*  *@
+                                    <br />
+                                </div>
+                            }
+
+                        }
+
+                        @*<h3> @Model.pregunta </h3>
+
+                        @foreach (var a in Model.tbl_respuestas)
+                        {
+                            <p>
+                                @Html.RadioButtonFor(b => b.RespuestaSeleccionada, a.id_respuesta)  @a.respuesta
+                            </p>
+
+                        }*@
+
+                    </td>
+
+                </tr>
+            </table>
+            <center>
+                <input type="submit" value="Finalizar Examen" class="btn btn-comenzar btn-lg btn-block" />
+            </center>
+        </div>
+    </div>
+} 
+@if(ViewBag.showSuccessAlert==true)
+    {
+
+                <script>
+            alert('Aun no se ha liberado examen para este resultado de aprendizaje');
+        </script>
+}
+<div id="hola">
+
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $("#divRadios input[id='boton1']").click(function (event) {
+
+            var selecionado = ($(this).val())
+            $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Getpreguntas", "Examen")',
+                    dataType: 'json',
+                    data: { boton1: $("#boton1").val() },
+                    success: function (tbl_unidad) {
+                    
+                        alert(boton1)
+                 
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve unidades.' + ex);
+                    }
+                });
+
+        });
+
+
+    //$("#btnLimpiar").click(function (event) {
+    //    $("#divRadios input[name='id_pregunta']").prop('checked', false);
+    //});
+    </script>
+}

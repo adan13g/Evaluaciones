@@ -1,0 +1,103 @@
+﻿
+.btn-guardar {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #eb1540;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+    .btn-guardar:hover {
+        background: #d62451;
+        text-decoration: none;
+    }
+
+.btn-comenzar {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #ff3d00;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+    .btn-comenzar:hover {
+        background: #dd2c00;
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+.btn-morado {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #4a148c;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+    .btn-morado:hover {
+        background: #12005e;
+        text-decoration: none;
+        color: #ffffff;
+    }
+    
+/*#region Navbar */
+#custom-bootstrap-menu.navbar-default .navbar-brand {
+    color: rgba(255, 255, 255, 1);
+}
+
+#custom-bootstrap-menu.navbar-default {
+    font-size: 15px;
+    background-color: rgba(66, 74, 93, 1);
+    border-bottom-width: 1px;
+}
+
+    #custom-bootstrap-menu.navbar-default .navbar-nav > li > a {
+        color: rgba(255, 255, 255, 1);
+        background-color: rgba(66, 74, 93, 1);
+    }
+
+        #custom-bootstrap-menu.navbar-default .navbar-nav > li > a:hover,
+        #custom-bootstrap-menu.navbar-default .navbar-nav > li > a:focus {
+            color: rgba(255, 255, 255, 1);
+            background-color: rgba(46, 59, 92, 1);
+        }
+
+    #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a,
+    #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:hover,
+    #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:focus {
+        color: rgba(255, 255, 255, 1);
+        background-color: rgba(46, 59, 92, 1);
+    }
+
+    #custom-bootstrap-menu.navbar-default .navbar-toggle {
+        border-color: #2e3b5c;
+    }
+
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+            background-color: #2e3b5c;
+        }
+
+        #custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+            background-color: #2e3b5c;
+        }
+
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+            background-color: #424a5d;
+        }
+
+/*#endregion */

@@ -1,0 +1,51 @@
+﻿@model Mysql_Asp.Models.tbl_asignacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Asignacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_carreras.carrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_carreras.carrera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_grupos.grupos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_grupos.grupos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_materias.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_materias.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_profesores.Profesor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_profesores.Profesor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_asignacion } , new { @class = "btn btn-warning" })
+ |
+    @Html.ActionLink("Regresar a la lista", "Index", new { }, new { @class = "btn btn-success" })
+</p>
