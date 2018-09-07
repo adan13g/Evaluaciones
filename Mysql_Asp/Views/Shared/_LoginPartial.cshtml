@@ -6,7 +6,7 @@
 
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -14,35 +14,35 @@
                     @if (Session["Logo"] != null)
                     {
                         <img src="@Url.Content(Session["Logo"].ToString())" alt="Image" style="width:25px;height:25px; " class="img-circle" />
-                    }                    
-                    hola: 
-    @*@Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                    }
+                    hola:
+                    @*@Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
                     @User.Identity.GetUserName()
-           <span class="caret"></span>
+                    <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     @*<li>@Html.ActionLink("Mi Perfil", "Index", "Perfil",new { id=Model.matricula.FirstOrDefault()})</li>*@
 
                     <li>
-                        <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>  
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
                     </li>
                     <li>
                         @Html.ActionLink("Cambiar Contraseña" + "", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                   </li>
+                    </li>
                 </ul>
             </li>
-            
+
             @*<li>
-                
-                    @if (Session["Logo"] != null)
-                    {
-                        <img src="@Url.Content(Session["Logo"].ToString())" alt="Image" style="width:40px;height:40px;max-width: 100%; height: auto;" class="img-circle" />
-                    }
-             </li> 
-            <li>
-                @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>*@  
-                @*<li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>*@
+
+                        @if (Session["Logo"] != null)
+                        {
+                            <img src="@Url.Content(Session["Logo"].ToString())" alt="Image" style="width:40px;height:40px;max-width: 100%; height: auto;" class="img-circle" />
+                        }
+                 </li>
+                <li>
+                    @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>*@
+            @*<li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>*@
         </ul>
     }
 }

@@ -60,7 +60,7 @@ namespace Mysql_Asp.Controllers
                 if (view.LogoFile != null)
                 {
                     pic = FilesHelper.UploadPhoto(view.LogoFile, folder);
-                    pic = string.Format("{0}/{1}+{2}", folder, pic+ DateTime.Now.ToString("d"));
+                    pic = string.Format("{0}/{1}+{2}", folder, pic + DateTime.Now.ToFileTime());
                 }
                 var alumno = ToAlumno(view);
                 alumno.image = pic;
